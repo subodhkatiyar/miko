@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="is-primary">
+  <b-navbar class="is-primary header-section">
     <template #brand>
       <b-navbar-item>
         <img
@@ -12,9 +12,18 @@
       <b-navbar-item href="#"> Home </b-navbar-item>
       <b-navbar-item href="#"> Documentation </b-navbar-item>
       <b-navbar-dropdown label="Charts">
-        <b-navbar-item @click="$emit('showIntraDay')"> Intraday Intraday </b-navbar-item>
-        <b-navbar-item @click="$emit('showIntraDayWithBreaks')"> Intraday with breaks </b-navbar-item>
-        <b-navbar-item @click="$emit('showIntraDayCandlestick')"> Intraday candlestick </b-navbar-item>
+        <b-navbar-item @click="$emit('showIntraDay')">
+          Intraday Intraday
+        </b-navbar-item>
+        <b-navbar-item @click="$emit('showIntraDayWithBreaks')">
+          Intraday with breaks
+        </b-navbar-item>
+        <b-navbar-item @click="$emit('showIntraDayCandlestick')">
+          Intraday candlestick
+        </b-navbar-item>
+        <b-navbar-item @click="$emit('showSmaChart')">
+          SMA chart
+        </b-navbar-item>
       </b-navbar-dropdown>
     </template>
 
@@ -37,4 +46,8 @@ export default {
   name: "TrdingPlatformHeader",
 };
 </script>
-<style scoped></style>
+<style scoped>
+.header-section {
+  background-color: hsla(0, 0%, 100%, 0.3);
+}
+</style>

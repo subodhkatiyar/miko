@@ -4,33 +4,16 @@
       @showIntraDay="displayIntraDay()"
       @showIntraDayWithBreaks="displayIntraDayWithBreak()"
       @showIntraDayCandlestick="displayIntraDayWithCandleStick()"
+      @showSmaChart="displaySmaChart()"
     />
     <div v-if="datatObject" class="intraday-charts">
-      <!-- <b-button class="intraday" type="is-success" @click="displayIntraDay()"
-        >Intraday Intraday</b-button
-      >
-      <b-button
-        class="intraday"
-        type="is-success"
-        @click="displayIntraDayWithBreak()"
-        >Intraday with breaks</b-button
-      >
-      <b-button
-        class="intraday"
-        type="is-success"
-        @click="displayIntraDayWithCandleStick()"
-        >Intraday candlestick</b-button
-      > -->
-      <charts :optionsData="chartOptions" />
-
       <div class="demo-charts-data">
+        <sma-formula-chart v-if="isDisplaySmaChart" />
+        <charts :optionsData="chartOptions" v-if="!isDisplaySmaChart" />
         <demo-charts />
       </div>
       <!-- <button @click="increaseCounter()">increase counter</button>
       {{ counter }}-->
-      <div class="demo-charts-data">
-        <SmaFormulaChart />
-      </div>
       <Footer />
     </div>
   </div>
@@ -56,6 +39,7 @@ export default {
   data() {
     return {
       datatObject: [],
+      isDisplaySmaChart: false,
       ohlc: [],
       volume: [],
       chartOptions: {
@@ -135,6 +119,7 @@ export default {
     //   this.updateCounter(payload)
     // },
     async getSeriesData() {
+      this.isDisplaySmaChart = false;
       var url =
         "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=AMZN&interval=30min&apikey=7T1AUROWIHCWPM4B";
       axios
@@ -238,6 +223,9 @@ export default {
       });
       this.setChartType("candlestick");
       this.setSeriesProprty("candlestick", 0);
+    },
+    displaySmaChart() {
+      this.isDisplaySmaChart = true;
     },
   },
 };

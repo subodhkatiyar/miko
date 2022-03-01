@@ -1,10 +1,21 @@
 <template>
   <div class="demo-chart">
-    <div>Demo JSON Charts</div>
+    <div>
+      <h4 class="subtitle is-4">Displaying Chart Using Demo JSON</h4>
+      <h6 class="subtitle is-6 mt-0">
+        Displaying this chart using demo JSON data because we are not getting
+        sufficient amount of data from alphavantage<a
+          href="https://www.alphavantage.co/documentation/"
+        >
+          API
+        </a>
+      </h6>
+    </div>
     <div class="demo-data" v-if="chartOptions.series[0].data">
       <vue-highcharts
         :constructor-type="'stockChart'"
         :options="chartOptions"
+        class="update-dempo-chart-content"
       ></vue-highcharts>
     </div>
     <div
@@ -213,14 +224,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .demo-chart {
-  max-width: 1220px;
-  margin: 0 auto;
   font-weight: 800;
   font-size: 20px;
-  margin-top: 50px;
+  margin: 0 20px;
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 .demo-data {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 h3 {
   margin: 40px 0 0;
@@ -235,5 +246,13 @@ li {
 }
 a {
   color: #42b983;
+}
+.update-dempo-chart-content {
+  border-radius: 10px;
+  box-shadow: 0 0 5px 1px grey;
+}
+h4 {
+  font-weight: 600;
+  margin-bottom: 0.5rem !important;
 }
 </style>
